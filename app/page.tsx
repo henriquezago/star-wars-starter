@@ -5,7 +5,7 @@ import Card from "./components/Card";
 import styles from "./page.module.scss";
 import TextInput from "./components/TextInput";
 import Button from "./components/Button";
-import ResultsCard from "./components/ResultsCard";
+import ResultsCard, { Result } from "./components/ResultsCard";
 
 enum SearchType {
   PEOPLE = "people",
@@ -15,18 +15,24 @@ enum SearchType {
 export default function Home() {
   const [searchType, setSearchType] = useState<SearchType>(SearchType.PEOPLE);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Result[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSearch = useCallback(async () => {
     setIsLoading(true);
-    const response = await fetch(`/api/people?search=${searchTerm}`);
+
+    const searchTypeParam =
+      searchType === SearchType.PEOPLE ? "people" : "movies";
+
+    const response = await fetch(
+      `/api/${searchTypeParam}?search=${searchTerm}`
+    );
 
     const data = await response.json();
     setSearchResults(data.results);
 
     setIsLoading(false);
-  }, [searchTerm, setIsLoading]);
+  }, [searchType, searchTerm, setIsLoading, setSearchResults]);
 
   return (
     <main className={styles.main}>

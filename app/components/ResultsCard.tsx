@@ -4,13 +4,15 @@ import HorizontalDivider from "./HorizontalDivider";
 import styles from "./ResultsCard.module.scss";
 import Link from "next/link";
 
+export type Result = Person | Movie;
+
 interface ResultsCardProps {
-  results: any[];
+  results: Result[];
   isLoading: boolean;
 }
 
 interface ResultListItemProps {
-  results: any[];
+  results: Result[];
 }
 
 function EmptyState() {
@@ -26,17 +28,30 @@ function EmptyState() {
 }
 
 function ResultListItems({ results }: ResultListItemProps) {
+  const getName = (result: Result): string => {
+    if ("title" in result) {
+      return result.title;
+    }
+    return result.name;
+  };
+
+  const getLink = (result: Result): string => {
+    const id = result.url.split("/")[5];
+    if ("title" in result) {
+      return `/movies/${id}`;
+    }
+
+    return `/person/${id}`;
+  };
+
   return (
     <ul>
       {results.map((result) => {
-        const personId = result.url.split("/")[5];
-        const link = `/person/${personId}`;
-
         return (
-          <li key={result.name} className={styles.listItem}>
-            <span>{result.name}</span>
+          <li key={getName(result)} className={styles.listItem}>
+            <span>{getName(result)}</span>
             <Button>
-              <Link href={link}>See details</Link>
+              <Link href={getLink(result)}>See details</Link>
             </Button>
           </li>
         );

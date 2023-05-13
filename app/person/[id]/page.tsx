@@ -33,7 +33,7 @@ export default async function PersonPage({ params }: PersonPageProps) {
             <div className={styles.information}>
               <span>Birth Year: {personData.birth_year}</span>
               <span>Gender: {personData.gender}</span>
-              <span>Eye Color: {personData.gender}</span>
+              <span>Eye Color: {personData.eye_color}</span>
               <span>Hair Color: {personData.hair_color}</span>
               <span>Height: {personData.height}</span>
               <span>Mass: {personData.mass}</span>
