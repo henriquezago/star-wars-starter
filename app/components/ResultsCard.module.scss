@@ -1,0 +1,34 @@
+.card {
+  width: 36.375rem;
+  height: 36.375rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  color: #c4c4c4;
+  text-align: center;
+}
+
+.resultsList {
+  list-style: none;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #c4c4c4;
+    padding: 0.625rem 0;
+  }
+}

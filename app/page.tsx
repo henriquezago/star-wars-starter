@@ -1,95 +1,72 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import { useCallback, useState } from "react";
+import Card from "./components/Card";
+import styles from "./page.module.scss";
+import TextInput from "./components/TextInput";
+import Button from "./components/Button";
+import ResultsCard from "./components/ResultsCard";
+
+enum SearchType {
+  PEOPLE = "people",
+  MOVIES = "movies",
+}
 
 export default function Home() {
+  const [searchType, setSearchType] = useState<SearchType>(SearchType.PEOPLE);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleSearch = useCallback(async () => {
+    setIsLoading(true);
+    const response = await fetch(`/api/people?search=${searchTerm}`);
+
+    const data = await response.json();
+    setSearchResults(data.results);
+
+    setIsLoading(false);
+  }, [searchTerm, setIsLoading]);
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <Card className={styles.filtersCard}>
+        <h1 className={styles.title}>What are you searching for?</h1>
+        <div className={styles.inputsContainer}>
+          <input
+            type="radio"
+            id="people"
+            name="searchType"
+            value={SearchType.PEOPLE}
+            checked={searchType === SearchType.PEOPLE}
+            onChange={() => setSearchType(SearchType.PEOPLE)}
+          />
+          <label htmlFor="people">People</label>
+          <input
+            type="radio"
+            id="movies"
+            name="searchType"
+            value={SearchType.MOVIES}
+            checked={searchType === SearchType.MOVIES}
+            onChange={() => setSearchType(SearchType.MOVIES)}
+          />
+          <label htmlFor="movies">Movies</label>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        <TextInput
+          fullWidth
+          placeholder="e.g. Chewbacca, Yoda, Boba Fett"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Button
+          fullWidth
+          disabled={searchTerm === "" || isLoading}
+          onClick={handleSearch}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          {isLoading ? "Searching..." : "Search"}
+        </Button>
+      </Card>
+      <ResultsCard results={searchResults} isLoading />
     </main>
-  )
+  );
 }

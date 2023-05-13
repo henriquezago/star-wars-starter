@@ -1,0 +1,24 @@
+.main {
+  padding-top: 1.875rem;
+  display: flex;
+  gap: 1.875rem;
+  justify-content: center;
+}
+
+.title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.filtersCard {
+  min-width: 25.625rem;
+  height: fit-content;
+}
+
+.inputsContainer {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1.875rem;
+}
