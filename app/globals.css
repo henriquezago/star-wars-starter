@@ -19,6 +19,16 @@ body {
   font-family: Montserrat, sans-serif;
 }
 
+.header {
+  box-shadow: 0 2px 0 0 var(--gainsboro);
+  background-color: #fff;
+  padding: 0.875rem 0;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #0ab463;
+}
+
 body {
   color: #000;
   background: var(--foreground);
