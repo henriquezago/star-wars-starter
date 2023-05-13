@@ -1,3 +1,4 @@
+import { type } from "os";
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
@@ -6,6 +7,7 @@ interface ButtonProps {
   onClick?: () => void;
   fullWidth?: boolean;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
 export default function Button({
@@ -14,6 +16,7 @@ export default function Button({
   disabled,
   onClick,
   fullWidth,
+  type,
 }: ButtonProps) {
   const buttonClasses = [
     styles.button,
@@ -23,7 +26,12 @@ export default function Button({
     .filter(Boolean)
     .join(" ");
   return (
-    <button className={buttonClasses} disabled={disabled} onClick={onClick}>
+    <button
+      className={buttonClasses}
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
+    >
       {children}
     </button>
   );

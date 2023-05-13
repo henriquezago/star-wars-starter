@@ -15,16 +15,22 @@ interface ResultListItemProps {
   results: Result[];
 }
 
-function EmptyState() {
-  return (
-    <div className={styles.emptyState}>
-      <h3>
-        There are zero matches.
-        <br />
-        Use the form to search for People or Movies.
-      </h3>
-    </div>
+interface EmptyState {
+  isLoading: boolean;
+}
+
+function EmptyState({ isLoading }: EmptyState) {
+  const content = isLoading ? (
+    <h3>Searching...</h3>
+  ) : (
+    <h3>
+      There are zero matches.
+      <br />
+      Use the form to search for People or Movies.
+    </h3>
   );
+
+  return <div className={styles.emptyState}>{content}</div>;
 }
 
 function ResultListItems({ results }: ResultListItemProps) {
@@ -45,7 +51,7 @@ function ResultListItems({ results }: ResultListItemProps) {
   };
 
   return (
-    <ul>
+    <>
       {results.map((result) => {
         return (
           <li key={getName(result)} className={styles.listItem}>
@@ -56,14 +62,14 @@ function ResultListItems({ results }: ResultListItemProps) {
           </li>
         );
       })}
-    </ul>
+    </>
   );
 }
 
 export default function ResultsCard({ results, isLoading }: ResultsCardProps) {
   const content =
     results.length === 0 ? (
-      <EmptyState />
+      <EmptyState isLoading={isLoading} />
     ) : (
       <ul className={styles.resultsList}>
         <ResultListItems results={results} />

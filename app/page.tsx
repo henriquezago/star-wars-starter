@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useState } from "react";
+
 import Card from "./components/Card";
-import styles from "./page.module.scss";
 import TextInput from "./components/TextInput";
 import Button from "./components/Button";
 import ResultsCard, { Result } from "./components/ResultsCard";
+
+import styles from "./page.module.scss";
 
 enum SearchType {
   PEOPLE = "people",
@@ -58,19 +60,21 @@ export default function Home() {
           />
           <label htmlFor="movies">Movies</label>
         </div>
-        <TextInput
-          fullWidth
-          placeholder="e.g. Chewbacca, Yoda, Boba Fett"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <Button
-          fullWidth
-          disabled={searchTerm === "" || isLoading}
-          onClick={handleSearch}
-        >
-          {isLoading ? "Searching..." : "Search"}
-        </Button>
+        <form onSubmit={handleSearch}>
+          <TextInput
+            fullWidth
+            placeholder="e.g. Chewbacca, Yoda, Boba Fett"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button
+            fullWidth
+            disabled={searchTerm === "" || isLoading}
+            onClick={handleSearch}
+          >
+            {isLoading ? "Searching..." : "Search"}
+          </Button>
+        </form>
       </Card>
       <ResultsCard results={searchResults} isLoading />
     </main>
