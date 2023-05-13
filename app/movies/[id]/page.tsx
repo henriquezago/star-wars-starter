@@ -28,7 +28,7 @@ export default async function MoviePage({ params }: MoviePageProps) {
           <section className={styles.details}>
             <h2 className={styles.subtitle}>Opening Crawl</h2>
             <HorizontalDivider />
-            <div className={styles.information}>{movieData.opening_crawl}</div>
+            <pre className={styles.openingCrawl}>{movieData.opening_crawl}</pre>
           </section>
           <section className={styles.details}>
             <h2 className={styles.subtitle}>Characters</h2>
