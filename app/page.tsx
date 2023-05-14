@@ -20,21 +20,25 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState<Result[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleSearch = useCallback(async () => {
-    setIsLoading(true);
+  const handleSearch = useCallback(
+    async (e: React.SyntheticEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
 
-    const searchTypeParam =
-      searchType === SearchType.PEOPLE ? "people" : "movies";
+      const searchTypeParam =
+        searchType === SearchType.PEOPLE ? "people" : "movies";
 
-    const response = await fetch(
-      `/api/${searchTypeParam}?search=${searchTerm}`
-    );
+      const response = await fetch(
+        `/api/${searchTypeParam}?search=${searchTerm}`
+      );
 
-    const data = await response.json();
-    setSearchResults(data.results);
+      const data = await response.json();
+      setSearchResults(data.results);
 
-    setIsLoading(false);
-  }, [searchType, searchTerm, setIsLoading, setSearchResults]);
+      setIsLoading(false);
+    },
+    [searchType, searchTerm, setIsLoading, setSearchResults]
+  );
 
   return (
     <main className={styles.main}>
@@ -70,7 +74,7 @@ export default function Home() {
           <Button
             fullWidth
             disabled={searchTerm === "" || isLoading}
-            onClick={handleSearch}
+            type="submit"
           >
             {isLoading ? "Searching..." : "Search"}
           </Button>
