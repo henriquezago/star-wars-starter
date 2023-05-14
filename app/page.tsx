@@ -66,6 +66,7 @@ export default function Home() {
         </div>
         <form onSubmit={handleSearch}>
           <TextInput
+            testId="search-input"
             fullWidth
             placeholder="e.g. Chewbacca, Yoda, Boba Fett"
             value={searchTerm}

@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders a heading 1`] = `
+<div>
+  <main
+    class="main"
+  >
+    <div
+      class="card filtersCard"
+    >
+      <h1
+        class="title"
+      >
+        What are you searching for?
+      </h1>
+      <div
+        class="inputsContainer"
+      >
+        <input
+          checked=""
+          id="people"
+          name="searchType"
+          type="radio"
+          value="people"
+        />
+        <label
+          for="people"
+        >
+          People
+        </label>
+        <input
+          id="movies"
+          name="searchType"
+          type="radio"
+          value="movies"
+        />
+        <label
+          for="movies"
+        >
+          Movies
+        </label>
+      </div>
+      <form>
+        <input
+          class="textInput fullWidth"
+          data-testid="search-input"
+          placeholder="e.g. Chewbacca, Yoda, Boba Fett"
+          type="text"
+          value=""
+        />
+        <button
+          class="button fullWidth"
+          disabled=""
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+    <div
+      class="card card"
+    >
+      <h2
+        class="title"
+      >
+        Results
+      </h2>
+      <div
+        class="horizontalDivider"
+      />
+      <div
+        class="emptyState"
+      >
+        <h3>
+          Searching...
+        </h3>
+      </div>
+    </div>
+  </main>
+</div>
+`;

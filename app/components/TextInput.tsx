@@ -9,6 +9,7 @@ interface TextInputProps {
   placeholder?: string;
   className?: string;
   fullWidth?: boolean;
+  testId?: string;
 }
 
 export default function TextInput({
@@ -17,6 +18,7 @@ export default function TextInput({
   placeholder,
   className,
   fullWidth,
+  testId,
 }: TextInputProps) {
   const [inputValue, setInputValue] = useState<string>(value);
 
@@ -39,6 +41,7 @@ export default function TextInput({
   return (
     <input
       className={inputClasses}
+      data-testid={testId}
       type="text"
       value={inputValue}
       placeholder={placeholder}
