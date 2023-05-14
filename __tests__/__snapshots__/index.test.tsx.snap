@@ -72,7 +72,9 @@ exports[`Home renders a heading 1`] = `
         class="emptyState"
       >
         <h3>
-          Searching...
+          There are zero matches.
+          <br />
+          Use the form to search for People or Movies.
         </h3>
       </div>
     </div>
