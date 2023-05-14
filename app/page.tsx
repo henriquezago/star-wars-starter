@@ -81,7 +81,7 @@ export default function Home() {
           </Button>
         </form>
       </Card>
-      <ResultsCard results={searchResults} isLoading />
+      <ResultsCard results={searchResults} isLoading={isLoading} />
     </main>
   );
 }

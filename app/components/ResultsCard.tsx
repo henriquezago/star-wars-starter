@@ -20,6 +20,7 @@ interface EmptyState {
 }
 
 function EmptyState({ isLoading }: EmptyState) {
+  console.log({ isLoading });
   const content = isLoading ? (
     <h3>Searching...</h3>
   ) : (

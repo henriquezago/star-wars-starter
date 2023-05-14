@@ -4,6 +4,12 @@
   /* Colors */
   --gainsboro: #dadada;
   --darkgray: rgba(132, 132, 132, 0.75);
+  --gray-22: #383838;
+  --white: #fff;
+  --black: #000;
+  --silver: #c4c4c4;
+  --green: #0ab463;
+  --blue: #0094ff;
 }
 
 * {
@@ -30,19 +36,13 @@ body {
 }
 
 body {
-  color: #000;
+  color: var(--black);
   background: var(--foreground);
 }
 
 a {
-  color: #0094ff;
+  color: var(--blue);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: normal;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

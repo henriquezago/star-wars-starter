@@ -15,8 +15,8 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  font-size: 14px;
-  color: #c4c4c4;
+  font-size: 0.875rem;
+  color: var(--silver);
   text-align: center;
 }
 
@@ -27,9 +27,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid var(--silver);
     padding: 0.625rem 0;
   }
 }
