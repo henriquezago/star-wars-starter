@@ -12,7 +12,7 @@ interface MoviePageProps {
 }
 
 async function getMovieDetails(movieId: string) {
-  const response = await fetch(`http://localhost:3000/api/movie?id=${movieId}`);
+  const response = await fetch(`http://127.0.0.1:3000/api/movie?id=${movieId}`);
   return response.json();
 }
 
