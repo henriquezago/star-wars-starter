@@ -27,14 +27,18 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "jest",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "cypress/support/*.ts"
+    "cypress/support/*.ts",
   ],
   "exclude": [
     "node_modules"
