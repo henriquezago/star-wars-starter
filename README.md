@@ -1,4 +1,4 @@
-Star Wars Archives
+# Star Wars Archives
 
 NextJS app to display Star Wars data from the [SWAPI](https://swapi.dev/).
 
